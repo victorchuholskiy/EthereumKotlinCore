@@ -38,6 +38,7 @@ class EthManager(nodeUrl: String,
 	 * Return hex address of the new account.
 	 *
 	 * @param password for encryption the keystore file (will using for signing transactions)
+	 *
 	 * @return new account address
 	 */
 	@Throws(NoSuchAlgorithmException::class, NoSuchProviderException::class, InvalidAlgorithmParameterException::class, EncryptionException::class, IOException::class)
@@ -56,6 +57,7 @@ class EthManager(nodeUrl: String,
 	 *
 	 * @param password using for encryption the keystore file
 	 * @param file     is original file
+	 *
 	 * @return address of the wallet
 	 */
 	@Throws(IOException::class, EncryptionException::class)
@@ -78,6 +80,7 @@ class EthManager(nodeUrl: String,
 	 * Check is account imported on the device
 	 *
 	 * @param accountAddress - hex account address
+	 *
 	 * @return true if a key-file is found (imported)
 	 */
 	fun isAccountImported(accountAddress: String): Boolean {
@@ -113,6 +116,7 @@ class EthManager(nodeUrl: String,
 	 * @param address     - hex account address
 	 * @param oldPassword - old password
 	 * @param newPassword - new password
+	 *
 	 * @return new account address
 	 */
 	@Throws(AccountNotFoundException::class, IncorrectPassException::class)
@@ -162,6 +166,7 @@ class EthManager(nodeUrl: String,
 	 * Deleting account (key-file from key-store folder).
 	 *
 	 * @param accountAddress - hex account address
+	 *
 	 * @return true if deleting success
 	 */
 	fun deleteKeyFileByAddress(accountAddress: String): Boolean {
@@ -173,6 +178,7 @@ class EthManager(nodeUrl: String,
 	 * Get current account balance
 	 *
 	 * @param accountAddress - hex account address
+	 *
 	 * @return balance as ETHValue
 	 */
 	@Throws(InterruptedException::class, ExecutionException::class)
@@ -185,6 +191,7 @@ class EthManager(nodeUrl: String,
 	 * Sending transaction (simple eth transaction)
 	 *
 	 * @param password using for encryption the keystore file
+	 *
 	 * @return transaction hex
 	 */
 	@Throws(InterruptedException::class, ExecutionException::class, IOException::class, EncryptionException::class)
@@ -248,6 +255,7 @@ class EthManager(nodeUrl: String,
 	 *
 	 * @param mnemonic - mnemonic (12 words)
 	 * @param indexes  - address indexes
+	 *
 	 * @return generated deterministic key
 	 */
 	@Throws(IncorrectMnemonicException::class, IOException::class, IncorrectDerivationPathException::class)
@@ -263,6 +271,7 @@ class EthManager(nodeUrl: String,
 	 * @param passphrase - optional password using for greater safety (empty by default)
 	 * @param path       - derivation path (string)
 	 * @param indexes    - address indexes
+	 *
 	 * @return generated deterministic key
 	 */
 	@Throws(IncorrectMnemonicException::class, IOException::class, IncorrectDerivationPathException::class)
@@ -292,6 +301,7 @@ class EthManager(nodeUrl: String,
 	 * @param mnemonic   - mnemonic (12 words)
 	 * @param startIndex - start address index
 	 * @param count      - count of elements
+	 *
 	 * @return generated deterministic keys (list of hd wallets)
 	 */
 	@Throws(IncorrectMnemonicException::class, IOException::class, IncorrectDerivationPathException::class)
@@ -308,6 +318,7 @@ class EthManager(nodeUrl: String,
 	 * @param path       - derivation path (string)
 	 * @param startIndex - start address index
 	 * @param count      - count of elements
+	 *
 	 * @return generated deterministic key
 	 */
 	@Throws(IncorrectMnemonicException::class, IOException::class, IncorrectDerivationPathException::class)
@@ -338,6 +349,7 @@ class EthManager(nodeUrl: String,
 	 * @param hdWallet    - hd wallet
 	 * @param password    - password for encryption of the file
 	 * @param keyStoreDir - key store directory (file)
+	 *
 	 * @return address of the hd wallet
 	 */
 	@Throws(EncryptionException::class, IOException::class)
@@ -359,6 +371,7 @@ class EthManager(nodeUrl: String,
 	 * Tries to find the key-file in the keystore folder by the address
 	 *
 	 * @param accountAddress - hex address of the account
+	 *
 	 * @return key-file if it is found (otherwise null)
 	 */
 	private fun getKeyFileByAddress(accountAddress: String): File? {
@@ -387,6 +400,7 @@ class EthManager(nodeUrl: String,
 	 * Provides a list of all json files in the keystore folder
 	 *
 	 * @param parentDir - keystore folder
+	 *
 	 * @return list of json files
 	 */
 	private fun getListFiles(parentDir: File): List<File> {

@@ -53,6 +53,7 @@ class HDWalletManager {
 		 *
 		 * @param mnemonic   - mnemonic phrase (list, 12 words)
 		 * @param passphrase - optional passphrase used for seed generation.
+		 *
 		 * @return seed, 64 bytes
 		 */
 		@Throws(IOException::class, MnemonicException::class)
@@ -68,6 +69,7 @@ class HDWalletManager {
 		 *
 		 * @param mnemonic   - mnemonic phrase (string, 12 words through a space)
 		 * @param passphrase - optional passphrase used for seed generation.
+		 *
 		 * @return seed, 64 bytes
 		 */
 		@Throws(IOException::class, MnemonicException::class)
@@ -90,6 +92,7 @@ class HDWalletManager {
 		 * Generate HD wallet master key (BIP-32)
 		 *
 		 * @param seed - seed (64 bytes, BIP39)
+		 *
 		 * @return generated master key
 		 */
 		fun generateMasterKey(seed: ByteArray): DeterministicKey {
@@ -114,6 +117,7 @@ class HDWalletManager {
 		 * Basic: m / purpose' / coin_type' / account' / change / address_index
 		 *
 		 * @param path - derivation path
+		 *
 		 * @return is path correct
 		 */
 		private fun isPathCorrect(path: String): Boolean {
@@ -124,6 +128,7 @@ class HDWalletManager {
 		 * Convert string derivation path to list of ChildNumber
 		 *
 		 * @param path - derivation path
+		 *
 		 * @return list of indexes
 		 */
 		@Throws(IncorrectDerivationPathException::class)
@@ -146,6 +151,7 @@ class HDWalletManager {
 		 * Convert string derivation path to list of integer
 		 *
 		 * @param path - derivation path
+		 *
 		 * @return list of indexes (integers)
 		 */
 		@Throws(IncorrectDerivationPathException::class)
@@ -168,6 +174,7 @@ class HDWalletManager {
 		 * @param masterKey - derivation master key
 		 * @param path      - derivation path (list)
 		 * @param index     - address index
+		 *
 		 * @return generated deterministic key
 		 */
 		private fun getChildKey(masterKey: DeterministicKey,
@@ -184,6 +191,7 @@ class HDWalletManager {
 		 * @param masterKey - derivation master key
 		 * @param path      - derivation path (string)
 		 * @param index     - address index
+		 *
 		 * @return generated deterministic key
 		 */
 		@Throws(IncorrectDerivationPathException::class)
@@ -201,6 +209,7 @@ class HDWalletManager {
 		 * @param path       - derivation path (list)
 		 * @param startIndex - start address index
 		 * @param count      - count of keys
+		 *
 		 * @return generated deterministic key
 		 */
 		private fun getChildKeys(masterKey: DeterministicKey,
@@ -223,6 +232,7 @@ class HDWalletManager {
 		 * @param path       - derivation path (string)
 		 * @param startIndex - start address index
 		 * @param count      - count of keys
+		 *
 		 * @return generated deterministic key
 		 */
 		@Throws(IncorrectDerivationPathException::class)
