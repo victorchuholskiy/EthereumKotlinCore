@@ -8,7 +8,7 @@ import java.math.BigInteger;
  * 27/07/17.
  */
 
-public class ETHValue {
+public class EthValue {
 
 	private static final BigDecimal KWEI = BigDecimal.TEN.pow(3);
 	private static final BigDecimal GWEI = BigDecimal.TEN.pow(9);
@@ -22,52 +22,52 @@ public class ETHValue {
 
 	private BigInteger value;
 
-	public static ETHValue of(long value) {
-		return new ETHValue(value);
+	public static EthValue of(long value) {
+		return new EthValue(value);
 	}
 
-	public static ETHValue of(BigInteger value) {
-		return new ETHValue(value);
+	public static EthValue of(BigInteger value) {
+		return new EthValue(value);
 	}
 
-	public static ETHValue ofWei(long value) {
-		return new ETHValue(BigInteger.valueOf(value));
+	public static EthValue ofWei(long value) {
+		return new EthValue(BigInteger.valueOf(value));
 	}
 
-	public static ETHValue ofKWei(long value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(KWEI).toBigInteger());
+	public static EthValue ofKWei(long value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(KWEI).toBigInteger());
 	}
 
-	public static ETHValue ofGWei(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(GWEI).toBigInteger());
+	public static EthValue ofGWei(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(GWEI).toBigInteger());
 	}
 
-	public static ETHValue ofMicroEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(MICROETHER).toBigInteger());
+	public static EthValue ofMicroEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(MICROETHER).toBigInteger());
 	}
 
-	public static ETHValue ofMilliEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(MILLIETHER).toBigInteger());
+	public static EthValue ofMilliEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(MILLIETHER).toBigInteger());
 	}
 
-	public static ETHValue ofEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(ETHER).toBigInteger());
+	public static EthValue ofEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(ETHER).toBigInteger());
 	}
 
-	public static ETHValue ofKEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(KETHER).toBigInteger());
+	public static EthValue ofKEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(KETHER).toBigInteger());
 	}
 
-	public static ETHValue ofMEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(METHER).toBigInteger());
+	public static EthValue ofMEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(METHER).toBigInteger());
 	}
 
-	public static ETHValue ofGEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(GETHER).toBigInteger());
+	public static EthValue ofGEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(GETHER).toBigInteger());
 	}
 
-	public static ETHValue ofTEther(double value) {
-		return new ETHValue(BigDecimal.valueOf(value).multiply(TETHER).toBigInteger());
+	public static EthValue ofTEther(double value) {
+		return new EthValue(BigDecimal.valueOf(value).multiply(TETHER).toBigInteger());
 	}
 
 	public long inWei() {
@@ -78,11 +78,11 @@ public class ETHValue {
 		return new BigDecimal(value).divide(KWEI, digitsNumber, BigDecimal.ROUND_DOWN).doubleValue();
 	}
 
-	private ETHValue(BigInteger value) {
+	private EthValue(BigInteger value) {
 		this.value = value;
 	}
 
-	private ETHValue(long value) {
+	private EthValue(long value) {
 		this.value = BigInteger.valueOf(value);
 	}
 

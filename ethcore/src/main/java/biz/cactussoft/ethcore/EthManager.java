@@ -42,7 +42,7 @@ import biz.cactussoft.ethcore.exceptions.EncryptionException;
 import biz.cactussoft.ethcore.exceptions.IncorrectDerivationPathException;
 import biz.cactussoft.ethcore.exceptions.IncorrectMnemonicException;
 import biz.cactussoft.ethcore.exceptions.IncorrectPassException;
-import biz.cactussoft.ethcore.models.ETHValue;
+import biz.cactussoft.ethcore.models.EthValue;
 import biz.cactussoft.ethcore.models.HDWallet;
 
 /**
@@ -50,11 +50,11 @@ import biz.cactussoft.ethcore.models.HDWallet;
  * 17/07/17.
  */
 
-public class ETHManager {
+public class EthManager {
 
 	public static final String DEFAULT_DERIVATION_PATH = "m/44'/60'/0'/0";
 
-	private static final String TAG = ETHManager.class.getSimpleName();
+	private static final String TAG = EthManager.class.getSimpleName();
 
 	private static final String DEFAULT_MNEMONIC_PASSPHRASE = "";
 	private static final String ACCOUNT_PREFIX = "0x";
@@ -64,14 +64,14 @@ public class ETHManager {
 	private Web3j sWeb3j;
 	private String mKeyStoreDir;
 
-	public ETHManager(String nodeUrl,
+	public EthManager(String nodeUrl,
 					  String keyStoreDir) {
 		mKeyStoreDir = keyStoreDir;
 		sWeb3j = Web3jFactory.build(new HttpService(nodeUrl));
 	}
 
 	/**
-	 * Create new account in ethereum network.
+	 * Create new account in ethereum network. Default algorithm using random generation.
 	 * Return hex address of the new account.
 	 *
 	 * @param password for encryption the keystore file (will using for signing transactions)
@@ -114,11 +114,12 @@ public class ETHManager {
 	}
 
 	/**
-	 * Backup/export existed account.
+	 * Export existed keystore file
 	 *
 	 * @param accountAddress - hex account address
 	 * @param password       using for encryption the keystore file
-	 * @param newPassword    using for export/import the account
+	 * @param newPassword    using for re-encryption of the keystore file (you can change the password during the wallet export)
+	 * @param newDir         - destination folder
 	 */
 	public void exportAccount(String accountAddress,
 							  String password,
@@ -140,11 +141,11 @@ public class ETHManager {
 	}
 
 	/**
-	 * Import account from json file.
+	 * Import account from json file (check data and copy to keystore folder)
 	 *
 	 * @param password using for encryption the keystore file
-	 * @param file     - original file
-	 * @throws IOException, CipherException An error occurred
+	 * @param file     is original file
+	 * @return address of the wallet
 	 */
 	public String importFile(String password,
 							 File file) throws IOException, EncryptionException {
@@ -164,11 +165,17 @@ public class ETHManager {
 	 * Check is account imported on the device
 	 *
 	 * @param accountAddress - hex account address
+	 * @return true if a key-file is found (imported)
 	 */
 	public boolean isAccountImported(String accountAddress) {
 		return getKeyFileByAddress(accountAddress) != null;
 	}
 
+	/**
+	 * Check is account imported on the device
+	 *
+	 * @return the list of addresses of imported accounts
+	 */
 	public List<String> getImportedAccounts() {
 		final List<String> addresses = new ArrayList<>();
 		final List<File> files = getListFiles(new File(mKeyStoreDir));
@@ -186,9 +193,10 @@ public class ETHManager {
 	}
 
 	/**
-	 * Deleting account.
+	 * Deleting account (key-file from key-store folder).
 	 *
 	 * @param accountAddress - hex account address
+	 * @return true if deleting success
 	 */
 	public boolean deleteKeyFileByAddress(String accountAddress) {
 		final File file = getKeyFileByAddress(accountAddress);
@@ -199,22 +207,24 @@ public class ETHManager {
 	 * Get current account balance
 	 *
 	 * @param accountAddress - hex account address
+	 * @return balance as ETHValue
 	 */
-	public ETHValue getBalance(String accountAddress) throws InterruptedException, ExecutionException {
+	public EthValue getBalance(String accountAddress) throws InterruptedException, ExecutionException {
 		final String balance = sWeb3j.ethGetBalance(accountAddress, DefaultBlockParameterName.LATEST).sendAsync().get().getBalance().toString();
-		return ETHValue.of(new BigInteger(balance));
+		return EthValue.of(new BigInteger(balance));
 	}
 
 	/**
-	 * Sending transaction
+	 * Sending transaction (simple eth transaction)
 	 *
 	 * @param password using for encryption the keystore file
+	 * @return transaction hex
 	 */
 	public String sendEthTransaction(String addressFrom,
 									 String addressTo,
-									 ETHValue value,
+									 EthValue value,
 									 String password,
-									 ETHValue gasPrice,
+									 EthValue gasPrice,
 									 long gasLimit) throws InterruptedException, ExecutionException, IOException, EncryptionException {
 		final File keyFile = getKeyFileByAddress(addressFrom);
 		if (keyFile != null) {
@@ -237,10 +247,14 @@ public class ETHManager {
 		return null;
 	}
 
-
-	public ETHValue getRecommendedGasPrice() throws IOException {
+	/**
+	 * Get recommended gas price
+	 *
+	 * @return recommended gas price as ETHValue
+	 */
+	public EthValue getRecommendedGasPrice() throws IOException {
 		final EthGasPrice ethGasPrice = sWeb3j.ethGasPrice().send();
-		return ETHValue.of(ethGasPrice.getGasPrice());
+		return EthValue.of(ethGasPrice.getGasPrice());
 	}
 
 	/**
@@ -272,9 +286,10 @@ public class ETHManager {
 	/**
 	 * Get deterministic key generated by mnemonic, passphrase, path and index
 	 *
-	 * @param mnemonic - mnemonic (12 words)
-	 * @param path     - derivation path (string)
-	 * @param indexes  - address indexes
+	 * @param mnemonic   - mnemonic (12 words)
+	 * @param passphrase - optional password using for greater safety (empty by default)
+	 * @param path       - derivation path (string)
+	 * @param indexes    - address indexes
 	 * @return generated deterministic key
 	 */
 	public List<HDWallet> getHDWallet(List<String> mnemonic,
@@ -302,7 +317,7 @@ public class ETHManager {
 	 * @param mnemonic   - mnemonic (12 words)
 	 * @param startIndex - start address index
 	 * @param count      - count of elements
-	 * @return generated deterministic key
+	 * @return generated deterministic keys (list of hd wallets)
 	 */
 	public List<HDWallet> getConsecutiveHDWallets(List<String> mnemonic,
 												  int startIndex,
@@ -375,7 +390,7 @@ public class ETHManager {
 	 *
 	 * @param mnemonic - mnemonic phrase (list, 12 words)
 	 */
-	public static void checkWords(List<String> mnemonic) throws IOException, IncorrectMnemonicException {
+	public static void checkMnemonic(List<String> mnemonic) throws IOException, IncorrectMnemonicException {
 		try {
 			HDWalletManager.checkWords(mnemonic);
 		} catch (MnemonicException e) {
@@ -383,6 +398,12 @@ public class ETHManager {
 		}
 	}
 
+	/**
+	 * Tries to find the key-file in the keystore folder by the address
+	 *
+	 * @param address - hex address of the account
+	 * @return key-file if it is found (otherwise null)
+	 */
 	private File getKeyFileByAddress(@Nonnull String address) {
 		final List<File> files = getListFiles(new File(mKeyStoreDir));
 		if (address.startsWith(ACCOUNT_PREFIX)) {
@@ -403,6 +424,12 @@ public class ETHManager {
 		return null;
 	}
 
+	/**
+	 * Provides a list of all json files in the keystore folder
+	 *
+	 * @param parentDir - keystore folder
+	 * @return list of json files
+	 */
 	private List<File> getListFiles(File parentDir) {
 		final ArrayList<File> inFiles = new ArrayList<>();
 		final File[] files = parentDir.listFiles();
