@@ -5,7 +5,7 @@ package biz.cactussoft.ethcore.exceptions;
  * 27/07/17.
  */
 
-public class EncryptionException extends BaseEthereumException {
+public class EncryptionException extends BaseEthException {
 
     public EncryptionException(String message) {
         super(message);

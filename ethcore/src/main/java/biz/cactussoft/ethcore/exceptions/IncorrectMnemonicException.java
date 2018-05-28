@@ -5,7 +5,7 @@ package biz.cactussoft.ethcore.exceptions;
  * 27/07/17.
  */
 
-public class IncorrectMnemonicException extends BaseEthereumException {
+public class IncorrectMnemonicException extends BaseEthException {
 
     public IncorrectMnemonicException(String message) {
         super(message);
