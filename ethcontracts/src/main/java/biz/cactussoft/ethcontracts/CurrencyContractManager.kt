@@ -23,27 +23,27 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	private val mCallContract: ERC223Currency = ERC223Currency.load("", contractAddress, sWeb3j, sEmptyTransactionManager, Contract.GAS_PRICE, Contract.GAS_LIMIT)
 
 	/**
+	 * Get total supply
+	 */
+	@Throws(IOException::class, InterruptedException::class)
+	fun getTotalSupplyInfo(): Long {
+		return mCallContract.totalSupply().value.toLong()
+	}
+
+	/**
 	 * Get token name
 	 */
 	@Throws(IOException::class, InterruptedException::class)
-	fun getTokenNameInfo(): String {
-		try {
-			return mCallContract.name().value
-		} catch (e: ExecutionException) {
-		}
-		return ""
+	fun getNameInfo(): String {
+		return mCallContract.name().value
 	}
 
 	/**
 	 * Get token symbol
 	 */
 	@Throws(IOException::class, InterruptedException::class)
-	fun getTokenSymbolInfo(): String {
-		try {
-			return mCallContract.symbol().value
-		} catch (e: ExecutionException) {
-		}
-		return ""
+	fun getSymbolInfo(): String {
+		return mCallContract.symbol().value
 	}
 
 	/**
@@ -51,11 +51,7 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	 */
 	@Throws(IOException::class, InterruptedException::class)
 	fun getTokenDecimalsInfo(): Int {
-		try {
-			return mCallContract.decimals().value.toInt()
-		} catch (e: ExecutionException) {
-		}
-		return 0
+		return mCallContract.decimals().value.toInt()
 	}
 
 	/**

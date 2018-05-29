@@ -37,22 +37,6 @@ class ERC223Currency : Contract {
 						gasLimit: BigInteger) : super(contractBinary, contractAddress, web3j, transactionManager, gasPrice, gasLimit)
 
 	@Throws(IOException::class)
-	fun name(): Utf8String {
-		val name = "name"
-		val input = emptyList<Type<Any>>()
-		val output = listOf(object : TypeReference<Utf8String>() {})
-		return executeCallSingleValueReturn(Function(name, input, output))
-	}
-
-	@Throws(InterruptedException::class, IOException::class)
-	fun approve(spender: String, value: BigInteger): TransactionReceipt {
-		val name = "approve"
-		val input = Arrays.asList(Address(spender), Uint256(value))
-		val output = emptyList<TypeReference<out Type<Any>>>()
-		return executeTransaction(Function(name, input, output))
-	}
-
-	@Throws(IOException::class)
 	fun totalSupply(): Uint256 {
 		val name = "totalSupply"
 		val input = emptyList<Type<Any>>()
@@ -60,12 +44,20 @@ class ERC223Currency : Contract {
 		return executeCallSingleValueReturn(Function(name, input, output))
 	}
 
-	@Throws(InterruptedException::class, IOException::class)
-	fun transferFrom(from: String, to: String, value: BigInteger): TransactionReceipt {
-		val name = "transferFrom"
-		val input = Arrays.asList(Address(from), Address(to), Uint256(value))
-		val output = emptyList<TypeReference<out Type<Any>>>()
-		return executeTransaction(Function(name, input, output))
+	@Throws(IOException::class)
+	fun name(): Utf8String {
+		val name = "name"
+		val input = emptyList<Type<Any>>()
+		val output = listOf(object : TypeReference<Utf8String>() {})
+		return executeCallSingleValueReturn(Function(name, input, output))
+	}
+
+	@Throws(IOException::class)
+	fun symbol(): Utf8String {
+		val name = "symbol"
+		val input = emptyList<Type<Any>>()
+		val output = listOf(object : TypeReference<Utf8String>() {})
+		return executeCallSingleValueReturn(Function(name, input, output))
 	}
 
 	@Throws(IOException::class)
@@ -77,27 +69,11 @@ class ERC223Currency : Contract {
 	}
 
 	@Throws(IOException::class)
-	fun version(): Utf8String {
-		val name = "version"
-		val input = emptyList<Type<Any>>()
-		val output = listOf(object : TypeReference<Utf8String>() {})
-		return executeCallSingleValueReturn(Function(name, input, output))
-	}
-
-	@Throws(IOException::class)
 	fun balanceOf(owner: String): Uint256 {
 		val name = "balanceOf"
 		val input = Arrays.asList(Address(owner))
 		val output = listOf(object : TypeReference<Uint256>() {})
 		return executeCallSingleValueReturn(Function(name, input as List<Type<String>>, output))
-	}
-
-	@Throws(IOException::class)
-	fun symbol(): Utf8String {
-		val name = "symbol"
-		val input = emptyList<Type<Any>>()
-		val output = listOf(object : TypeReference<Utf8String>() {})
-		return executeCallSingleValueReturn(Function(name, input, output))
 	}
 
 	@Throws(InterruptedException::class, IOException::class)
