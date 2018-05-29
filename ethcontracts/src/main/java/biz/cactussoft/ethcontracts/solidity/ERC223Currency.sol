@@ -44,24 +44,24 @@ contract ERC223Token is SafeMath {
         balances[msg.sender] = totalSupply; // Give the creator all initial tokens
     }
 
-    // Function to access name of token .
+    // Function to access name of token
     function name() public constant returns (string _name) {
         return name;
     }
-    // Function to access symbol of token .
+    // Function to access symbol of token
     function symbol() public constant returns (string _symbol) {
         return symbol;
     }
-    // Function to access decimals of token .
+    // Function to access decimals of token
     function decimals() public constant returns (uint8 _decimals) {
         return decimals;
     }
-    // Function to access total supply of tokens .
+    // Function to access total supply of tokens
     function totalSupply() public constant returns (uint256 _totalSupply) {
         return totalSupply;
     }
 
-    // Function that is called when a user or another contract wants to transfer funds .
+    // Function that is called when a user or another contract wants to transfer funds
     function transfer(address _to, uint _value, bytes _data, string _custom_fallback) public returns (bool success) {
         if(isContract(_to)) {
             require(balanceOf(msg.sender) >= _value);
@@ -76,7 +76,7 @@ contract ERC223Token is SafeMath {
         }
     }
 
-    // Function that is called when a user or another contract wants to transfer funds .
+    // Function that is called when a user or another contract wants to transfer funds
     function transfer(address _to, uint _value, bytes _data) public returns (bool success) {
         if(isContract(_to)) {
             return transferToContract(_to, _value, _data);
@@ -86,7 +86,7 @@ contract ERC223Token is SafeMath {
         }
     }
 
-    // Standard function transfer similar to ERC20 transfer with no _data .
+    // Standard function transfer similar to ERC20 transfer with no _data
     // Added due to backwards compatibility reasons .
     function transfer(address _to, uint _value) public returns (bool success) {
 
@@ -101,12 +101,12 @@ contract ERC223Token is SafeMath {
         }
     }
 
-    //assemble the given address bytecode. If bytecode exists then the _addr is a contract.
-    function isContract(address _addr) private view returns (bool is_contract) {
+    //assemble the given address bytecode. If bytecode exists then the _address is a contract
+    function isContract(address _address) private view returns (bool is_contract) {
         uint length;
         assembly {
         //retrieve the size of the code on target address, this needs assembly
-            length := extcodesize(_addr)
+            length := extcodesize(_address)
         }
         return (length>0);
     }
