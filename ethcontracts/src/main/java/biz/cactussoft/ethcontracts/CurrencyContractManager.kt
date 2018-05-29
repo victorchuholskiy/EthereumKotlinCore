@@ -15,7 +15,12 @@ import java.util.concurrent.ExecutionException
  */
 class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAddress: String) : BaseContractManager(nodeUrl, keyStoreDir) {
 
-	private val mDefContract: ERC223Currency = ERC223Currency.load("", contractAddress, sWeb3j, sEmptyTransactionManager, Contract.GAS_PRICE, Contract.GAS_LIMIT)
+	/**
+	 * This implementation is used to connect to an existing contract and perform call operations.
+	 * It does not contain a contract binary code for the publication of the contract, as well as a transaction processing manager.
+	 * This allows you to execute call methods without passing credentials.
+	 */
+	private val mCallContract: ERC223Currency = ERC223Currency.load("", contractAddress, sWeb3j, sEmptyTransactionManager, Contract.GAS_PRICE, Contract.GAS_LIMIT)
 
 	/**
 	 * Get token name
@@ -23,7 +28,7 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	@Throws(IOException::class, InterruptedException::class)
 	fun getTokenNameInfo(): String {
 		try {
-			return mDefContract.name().value
+			return mCallContract.name().value
 		} catch (e: ExecutionException) {
 		}
 		return ""
@@ -35,7 +40,7 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	@Throws(IOException::class, InterruptedException::class)
 	fun getTokenSymbolInfo(): String {
 		try {
-			return mDefContract.symbol().value
+			return mCallContract.symbol().value
 		} catch (e: ExecutionException) {
 		}
 		return ""
@@ -47,7 +52,7 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	@Throws(IOException::class, InterruptedException::class)
 	fun getTokenDecimalsInfo(): Int {
 		try {
-			return mDefContract.decimals().value.toInt()
+			return mCallContract.decimals().value.toInt()
 		} catch (e: ExecutionException) {
 		}
 		return 0
@@ -56,14 +61,13 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	/**
 	 * Updating wallet tokens balance
 	 *
-	 * @param contractAddress - contract address
 	 * @param ownerAddress - wallet/contract owner address
 	 *
 	 * @return tokens balance value
 	 */
 	@Throws(IOException::class, InterruptedException::class, ExecutionException::class)
 	fun getTokenBalance(ownerAddress: String, decimal: Int): TokenValue {
-		val value = mDefContract.balanceOf(ownerAddress).value
+		val value = mCallContract.balanceOf(ownerAddress).value
 		return TokenValue.of(value, decimal)
 	}
 
