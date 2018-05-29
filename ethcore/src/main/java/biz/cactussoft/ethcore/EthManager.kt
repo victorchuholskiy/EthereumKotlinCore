@@ -420,14 +420,14 @@ class EthManager(nodeUrl: String,
 
 	companion object {
 
-		val DEFAULT_DERIVATION_PATH = "m/44'/60'/0'/0"
+		const val DEFAULT_DERIVATION_PATH = "m/44'/60'/0'/0"
+
+		private const val DEFAULT_MNEMONIC_PASSPHRASE = ""
+		private const val ACCOUNT_PREFIX = "0x"
+		private const val ACCOUNT_FIELD_NAME = "address"
+		private const val KEY_FILE_FORMAT = ".json"
 
 		private val TAG = EthManager::class.java.simpleName
-
-		private val DEFAULT_MNEMONIC_PASSPHRASE = ""
-		private val ACCOUNT_PREFIX = "0x"
-		private val ACCOUNT_FIELD_NAME = "address"
-		private val KEY_FILE_FORMAT = ".json"
 
 		/**
 		 * Convert mnemonic words list to string

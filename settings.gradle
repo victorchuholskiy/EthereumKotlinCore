@@ -1,1 +1,1 @@
-include ':app', ':ethcore', ':scrypt'
+include ':app', ':ethcore', ':scrypt', ':ethcontracts'
