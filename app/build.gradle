@@ -10,9 +10,13 @@ android {
 		applicationId "biz.cactussoft.ethereumwallet"
 		minSdkVersion 19
 		targetSdkVersion 27
+		multiDexEnabled true
+
 		versionCode 1
 		versionName "1.0"
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+		buildConfigField "String", "INFURA_NODE_URL", "\"https://mainnet.infura.io/5JTl6zJV6HgGi1ZrMLCp\""
 	}
 	buildTypes {
 		release {
@@ -27,6 +31,8 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 	implementation 'com.android.support:appcompat-v7:27.1.1'
 	implementation "com.android.support:design:27.1.1"
+	implementation 'com.android.support:multidex:1.0.3'
+	implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
 
 	implementation project(':ethcore')
 

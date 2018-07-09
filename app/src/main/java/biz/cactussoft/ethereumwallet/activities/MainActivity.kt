@@ -15,6 +15,5 @@ class MainActivity : AppCompatActivity() {
 
 		btn_check_balance.setOnClickListener {
 			startActivity(CheckBalanceActivity.newIntent(this)); }
-		btn_check_hd_wallet.setOnClickListener { Toast.makeText(this, "HD", Toast.LENGTH_SHORT).show(); }
 	}
 }
