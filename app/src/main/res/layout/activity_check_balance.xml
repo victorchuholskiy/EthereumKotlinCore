@@ -21,26 +21,6 @@
 			android:text="0x847ed5f2e5dde85ea2b685edab5f1f348fb140ed"/>
 	</android.support.design.widget.TextInputLayout>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="8dp"
-		android:layout_marginStart="2dp"
-		android:layout_marginEnd="2dp"
-		android:orientation="horizontal">
-
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="@string/balance"/>
-
-		<TextView
-			android:id="@+id/tv_balance"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginStart="8dp"/>
-	</LinearLayout>
-
 	<Button
 		android:id="@+id/btn_get_balance"
 		android:layout_width="wrap_content"
