@@ -1,3 +1,8 @@
 <resources>
-	<string name="app_name">EthereumWallet</string>
+	<string name="app_name">Ethereum core</string>
+	<string name="check_balance">Check balance</string>
+	<string name="check_hd_wallet">Check HD wallet</string>
+	<string name="address">Wallet address</string>
+	<string name="balance">Balance</string>
+	<string name="get_balance">Get balance</string>
 </resources>

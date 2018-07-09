@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="16dp"
+	tools:context="biz.cactussoft.ethereumwallet.activities.CheckBalanceActivity">
+
+	<android.support.design.widget.TextInputLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<EditText
+			android:id="@+id/et_address"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="14sp"
+			android:hint="@string/address"
+			android:text="0x847ed5f2e5dde85ea2b685edab5f1f348fb140ed"/>
+	</android.support.design.widget.TextInputLayout>
+
+	<Button
+		android:id="@+id/btn_get_balance"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="8dp"
+		android:layout_gravity="center"
+		android:text="@string/get_balance"/>
+</LinearLayout>
