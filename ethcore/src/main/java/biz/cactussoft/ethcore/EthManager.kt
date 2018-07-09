@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutionException
  * 28/05/18.
  */
 class EthManager(nodeUrl: String,
-				 private val mKeyStoreDir: String) {
+				 private val keyStoreDir: String) {
 
 	private val sWeb3j: Web3j = Web3jFactory.build(HttpService(nodeUrl))
 
@@ -44,7 +44,7 @@ class EthManager(nodeUrl: String,
 	@Throws(NoSuchAlgorithmException::class, NoSuchProviderException::class, InvalidAlgorithmParameterException::class, EncryptionException::class, IOException::class)
 	fun createNewAccount(password: String): String {
 		try {
-			val fileName = WalletUtils.generateLightNewWalletFile(password, File(mKeyStoreDir))
+			val fileName = WalletUtils.generateLightNewWalletFile(password, File(keyStoreDir))
 			return WalletUtils.loadCredentials(password, fileName).address
 		} catch (e: CipherException) {
 			throw EncryptionException(e)
@@ -66,7 +66,7 @@ class EthManager(nodeUrl: String,
 		try {
 			val credentials = WalletUtils.loadCredentials(password, file)
 			val walletFile = Wallet.createLight(password, credentials.ecKeyPair)
-			val destination = File(mKeyStoreDir, file.name)
+			val destination = File(keyStoreDir, file.name)
 			val objectMapper = ObjectMapperFactory.getObjectMapper()
 			objectMapper.writeValue(destination, walletFile)
 			return credentials.address
@@ -95,7 +95,7 @@ class EthManager(nodeUrl: String,
 	val importedAccounts: List<String>
 		get() {
 			val addresses = ArrayList<String>()
-			val files = getListFiles(File(mKeyStoreDir))
+			val files = getListFiles(File(keyStoreDir))
 			for (keyFile in files) {
 				try {
 					val node = ObjectMapper().readValue(keyFile, ObjectNode::class.java)
@@ -376,7 +376,7 @@ class EthManager(nodeUrl: String,
 	 */
 	private fun getKeyFileByAddress(accountAddress: String): File? {
 		var address = accountAddress
-		val files = getListFiles(File(mKeyStoreDir))
+		val files = getListFiles(File(keyStoreDir))
 		if (address.startsWith(ACCOUNT_PREFIX)) {
 			address = address.substring(ACCOUNT_PREFIX.length)
 		}
