@@ -1,9 +1,9 @@
 package biz.cactussoft.ethcontracts
 
-import biz.cactussoft.ethcontracts.contracts.ERC223Currency
+import biz.cactussoft.ethcontracts.contracts.ERC223Contract
+import biz.cactussoft.ethcontracts.exceptions.TransactionException
 import biz.cactussoft.ethcontracts.models.TokenValue
 import org.web3j.crypto.WalletUtils
-import org.web3j.protocol.exceptions.TransactionException
 import org.web3j.tx.Contract
 import java.io.IOException
 import java.math.BigInteger
@@ -20,7 +20,7 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	 * It does not contain a contract binary code for the publication of the contract, as well as a transaction processing manager.
 	 * This allows you to execute call methods without passing credentials.
 	 */
-	private val mCallContract: ERC223Currency = ERC223Currency.load("", contractAddress, sWeb3j, sEmptyTransactionManager, Contract.GAS_PRICE, Contract.GAS_LIMIT)
+	private val mCallContract: ERC223Contract = ERC223Contract.load("", contractAddress, sWeb3j, sEmptyTransactionManager, Contract.GAS_PRICE, Contract.GAS_LIMIT)
 
 	/**
 	 * Get total supply
@@ -77,10 +77,10 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	 */
 	@Throws(Exception::class)
 	fun prepareERC20Contract(walletAddress: String, password: String, contractAddress: String,
-							 gasPrice: BigInteger, gasLimit: Long): ERC223Currency {
+							 gasPrice: BigInteger, gasLimit: Long): ERC223Contract {
 		val credentials = WalletUtils.loadCredentials(password, getKeyFileByAddress(walletAddress))
 		val gasLimitBigInteger = BigInteger(gasLimit.toString())
-		return ERC223Currency.load("", contractAddress, sWeb3j, credentials, gasPrice, gasLimitBigInteger)
+		return ERC223Contract.load("", contractAddress, sWeb3j, credentials, gasPrice, gasLimitBigInteger)
 	}
 
 	/**
@@ -91,7 +91,7 @@ class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAdd
 	 * @param value - value of tokens
 	 */
 	@Throws(IOException::class, InterruptedException::class, ExecutionException::class)
-	fun sendTokens(contract: ERC223Currency, addressTo: String, value: TokenValue) {
+	fun sendTokens(contract: ERC223Contract, addressTo: String, value: TokenValue) {
 		try {
 			contract.transfer(addressTo, value.value)
 		} catch (e: Exception) {

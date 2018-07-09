@@ -68,7 +68,7 @@ open class BaseContractManager(nodeUrl: String,
 	 *
 	 * @return list of json files
 	 */
-	protected fun getListFiles(parentDir: File): List<File> {
+	private fun getListFiles(parentDir: File): List<File> {
 		val inFiles = ArrayList<File>()
 		val files = parentDir.listFiles()
 		for (file in files) {

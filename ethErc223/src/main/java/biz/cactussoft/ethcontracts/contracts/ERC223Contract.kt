@@ -20,7 +20,7 @@ import java.util.*
  * Created by viktor.chukholskiy
  * 29/05/18.
  */
-class ERC223Currency : Contract {
+class ERC223Contract : Contract {
 
 	private constructor(contractBinary: String,
 						contractAddress: String,
@@ -86,12 +86,12 @@ class ERC223Currency : Contract {
 
 	companion object {
 
-		fun load(contractBinary: String, contractAddress: String, web3j: Web3j, credentials: Credentials, gasPrice: BigInteger, gasLimit: BigInteger): ERC223Currency {
-			return ERC223Currency(contractBinary, contractAddress, web3j, credentials, gasPrice, gasLimit)
+		fun load(contractBinary: String, contractAddress: String, web3j: Web3j, credentials: Credentials, gasPrice: BigInteger, gasLimit: BigInteger): ERC223Contract {
+			return ERC223Contract(contractBinary, contractAddress, web3j, credentials, gasPrice, gasLimit)
 		}
 
-		fun load(contractBinary: String, contractAddress: String, web3j: Web3j, transactionManager: TransactionManager, gasPrice: BigInteger, gasLimit: BigInteger): ERC223Currency {
-			return ERC223Currency(contractBinary, contractAddress, web3j, transactionManager, gasPrice, gasLimit)
+		fun load(contractBinary: String, contractAddress: String, web3j: Web3j, transactionManager: TransactionManager, gasPrice: BigInteger, gasLimit: BigInteger): ERC223Contract {
+			return ERC223Contract(contractBinary, contractAddress, web3j, transactionManager, gasPrice, gasLimit)
 		}
 	}
 }
