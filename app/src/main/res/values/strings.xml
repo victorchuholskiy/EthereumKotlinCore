@@ -1,8 +1,11 @@
 <resources>
 	<string name="app_name">Ethereum core</string>
-	<string name="check_balance">Check balance</string>
+	<string name="check_wallet_balance">Check wallet balance</string>
+	<string name="check_contract_data">Check contract data</string>
 	<string name="check_hd_wallet">Check HD wallet</string>
-	<string name="address">Wallet address</string>
+	<string name="wallet_address">Wallet address</string>
+	<string name="contract_address">Contract address</string>
 	<string name="balance">Balance</string>
 	<string name="get_balance">Get balance</string>
+	<string name="get_contract_data">Get contract data</string>
 </resources>

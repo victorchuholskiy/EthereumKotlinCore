@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException
  * Created by viktor.chukholskiy
  * 29/05/18.
  */
-class CurrencyContractManager (nodeUrl: String, keyStoreDir: String, contractAddress: String) : BaseContractManager(nodeUrl, keyStoreDir) {
+class ERC223ContractManager (nodeUrl: String, keyStoreDir: String, contractAddress: String) : BaseContractManager(nodeUrl, keyStoreDir) {
 
 	/**
 	 * This implementation is used to connect to an existing contract and perform call operations.

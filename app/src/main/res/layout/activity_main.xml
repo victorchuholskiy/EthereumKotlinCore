@@ -4,14 +4,20 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:gravity="center"
 	android:orientation="vertical"
+	android:padding="32dp"
 	tools:context=".activities.MainActivity">
 
 	<Button
 		android:id="@+id/btn_check_balance"
-		android:layout_width="wrap_content"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_margin="8dp"
-		android:text="@string/check_balance"/>
+		android:text="@string/check_wallet_balance"/>
+
+	<Button
+		android:id="@+id/btn_check_contract"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="16dp"
+		android:text="@string/check_contract_data"/>
 </LinearLayout>
