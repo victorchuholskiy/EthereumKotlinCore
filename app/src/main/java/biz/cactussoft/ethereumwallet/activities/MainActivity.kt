@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_main)
 		btn_check_balance.setOnClickListener {
 			startActivity(CheckBalanceActivity.newIntent(this)); }
+		btn_check_hd_wallet.setOnClickListener {
+			startActivity(MnemonicActivity.newIntent(this)); }
 		btn_check_contract.setOnClickListener {
 			startActivity(CheckContractActivity.newIntent(this)); }
 	}
