@@ -23,8 +23,15 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".activities.CheckBalanceActivity">
+		<activity
+			android:name=".activities.CheckBalanceActivity"
+			android:screenOrientation="portrait"
+			android:label="@string/check_wallet_balance">
+		</activity>
+		<activity
+			android:name=".activities.CheckContractActivity"
+			android:screenOrientation="portrait"
+			android:label="@string/check_contract_data">
 		</activity>
 	</application>
-
 </manifest>

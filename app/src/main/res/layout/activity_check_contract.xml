@@ -6,25 +6,25 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical"
 	android:padding="16dp"
-	tools:context="biz.cactussoft.ethereumwallet.activities.CheckBalanceActivity">
+	tools:context="biz.cactussoft.ethereumwallet.activities.CheckContractActivity">
 
 	<android.support.design.widget.TextInputLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<android.support.v7.widget.AppCompatEditText
+		<EditText
 			android:id="@+id/et_address"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:textSize="13sp"
-			android:hint="@string/wallet_address"/>
+			android:hint="@string/contract_address"/>
 	</android.support.design.widget.TextInputLayout>
 
 	<Button
-		android:id="@+id/btn_get_balance"
+		android:id="@+id/btn_get_contract"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_margin="8dp"
 		android:layout_gravity="center"
-		android:text="@string/get_balance"/>
+		android:text="@string/get_contract_data"/>
 </LinearLayout>
