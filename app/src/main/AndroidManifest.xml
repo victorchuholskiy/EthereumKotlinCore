@@ -25,13 +25,19 @@
 		</activity>
 		<activity
 			android:name=".activities.CheckBalanceActivity"
-			android:screenOrientation="portrait"
-			android:label="@string/check_wallet_balance">
+			android:label="@string/check_wallet_balance"
+			android:screenOrientation="portrait">
 		</activity>
 		<activity
 			android:name=".activities.CheckContractActivity"
-			android:screenOrientation="portrait"
-			android:label="@string/check_contract_data">
+			android:label="@string/check_contract_data"
+			android:screenOrientation="portrait">
+		</activity>
+		<activity
+			android:name=".activities.MnemonicActivity"
+			android:label="@string/check_hd_wallet"
+			android:screenOrientation="portrait">
 		</activity>
 	</application>
+
 </manifest>

@@ -1,11 +1,26 @@
 <resources>
 	<string name="app_name">Ethereum core</string>
+
+	<string name="cancel">Cancel</string>
+	<string name="change">Change</string>
+
 	<string name="check_wallet_balance">Check wallet balance</string>
 	<string name="check_contract_data">Check contract data</string>
 	<string name="check_hd_wallet">Check HD wallet</string>
+
 	<string name="wallet_address">Wallet address</string>
 	<string name="contract_address">Contract address</string>
 	<string name="balance">Balance</string>
 	<string name="get_balance">Get balance</string>
 	<string name="get_contract_data">Get contract data</string>
+	<string name="derivation_path">Derivation path</string>
+	<string name="mnemonic_phrase_title">Mnemonic phrase (BIP-39)</string>
+	<string name="generate_mnemonic">Generate mnemonic phrase</string>
+	<string name="generate_wallets">Generate wallets</string>
+
+	<string name="choose_path">Derivation path</string>
+	<string name="purpose">Purpose</string>
+	<string name="coin">Coin</string>
+	<string name="account">Account</string>
+	<string name="external_internal">External / Internal</string>
 </resources>

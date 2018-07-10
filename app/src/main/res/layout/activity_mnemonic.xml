@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context="biz.cactussoft.ethereumwallet.activities.MnemonicActivity">
+
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="vertical"
+			android:padding="16dp">
+
+			<android.support.design.widget.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content">
+
+				<EditText
+					android:id="@+id/et_mnemonic"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:textSize="14sp"
+					android:hint="@string/mnemonic_phrase_title"/>
+			</android.support.design.widget.TextInputLayout>
+
+			<Button
+				android:id="@+id/btn_generate_mnemonic"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/generate_mnemonic"/>
+		</LinearLayout>
+	</android.support.v7.widget.CardView>
+
+	<android.support.v7.widget.CardView
+		android:id="@+id/cv_path"
+		android:layout_gravity="center"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:foreground="?android:attr/selectableItemBackground">
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="vertical"
+			android:padding="16dp">
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="@string/derivation_path"/>
+
+			<TextView
+				android:id="@+id/tv_path"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:textColor="@android:color/black"/>
+		</LinearLayout>
+	</android.support.v7.widget.CardView>
+
+	<Button
+		android:id="@+id/btn_generate_wallets"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/generate_wallets"
+		android:layout_margin="16dp"/>
+</LinearLayout>
