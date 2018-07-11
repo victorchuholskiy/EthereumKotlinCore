@@ -18,6 +18,7 @@
 	<string name="generate_mnemonic">Generate mnemonic phrase</string>
 	<string name="generate_wallets">Generate wallets</string>
 	<string name="hd_wallets">HD wallets</string>
+	<string name="invalid_mnemonic_phrase">Invalid mnemonic phrase</string>
 
 	<string name="choose_path">Derivation path</string>
 	<string name="purpose">Purpose</string>

@@ -3,6 +3,8 @@ package biz.cactussoft.ethereumwallet.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
+import android.widget.Toast
 import biz.cactussoft.ethcore.HDWalletManager
 import biz.cactussoft.ethereumwallet.R
 import biz.cactussoft.ethereumwallet.dialogs.ChangePathDialog
@@ -29,7 +31,13 @@ class MnemonicActivity : BaseHomeActivity(), ChangePathDialog.ChangePathListener
 			dialog.show(supportFragmentManager, ChangePathDialog::class.java.simpleName) }
 
 		btn_generate_wallets.setOnClickListener {
-			startActivity(HdWalletsActivity.newIntent(this, ArrayList(mnemonicToList(et_mnemonic.text.toString())), tv_path.text.toString()))
+			try {
+				val mnemonicList = mnemonicToList(et_mnemonic.text.toString())
+				HDWalletManager.checkWords(mnemonicList)
+				startActivity(HdWalletsActivity.newIntent(this, ArrayList(mnemonicList), tv_path.text.toString()))
+			} catch (e : Exception) {
+				Toast.makeText(this, if (TextUtils.isEmpty(e.message)) this.resources.getString(R.string.invalid_mnemonic_phrase) else e.message, Toast.LENGTH_SHORT).show()
+			}
 		}
 	}
 

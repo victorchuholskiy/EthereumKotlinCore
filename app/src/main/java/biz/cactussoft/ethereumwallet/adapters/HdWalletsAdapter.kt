@@ -22,6 +22,10 @@ class HdWalletsAdapter(private var items: MutableList<HDWallet>, private val lis
 
 	fun setData(wallets: List<HDWallet>) {
 		items.clear()
+		addData(wallets)
+	}
+
+	fun addData(wallets: List<HDWallet>) {
 		items.addAll(wallets)
 		notifyDataSetChanged()
 	}
