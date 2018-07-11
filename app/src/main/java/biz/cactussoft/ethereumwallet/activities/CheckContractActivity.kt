@@ -3,26 +3,17 @@ package biz.cactussoft.ethereumwallet.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import android.widget.Toast
 import biz.cactussoft.ethcontracts.ERC223ContractManager
 import biz.cactussoft.ethereumwallet.BuildConfig
 import biz.cactussoft.ethereumwallet.R
 import kotlinx.android.synthetic.main.activity_check_contract.*
 
-class CheckContractActivity : AppCompatActivity() {
+class CheckContractActivity : BaseHomeActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_check_contract)
-
-		val supportActionBar = supportActionBar
-		if (supportActionBar != null) {
-			supportActionBar.setDisplayHomeAsUpEnabled(true)
-			supportActionBar.setDisplayShowHomeEnabled(true)
-			supportActionBar.setHomeButtonEnabled(true)
-		}
 
 		et_address.setText(defContractAddress)
 
@@ -41,14 +32,6 @@ class CheckContractActivity : AppCompatActivity() {
 				}
 			}).start()
 		}
-	}
-
-	override fun onOptionsItemSelected(item: MenuItem): Boolean {
-		if (item.itemId == android.R.id.home) {
-			onBackPressed()
-			return true
-		}
-		return super.onOptionsItemSelected(item)
 	}
 
 	companion object {

@@ -38,6 +38,11 @@
 			android:label="@string/check_hd_wallet"
 			android:screenOrientation="portrait">
 		</activity>
+		<activity
+			android:name=".activities.HdWalletsActivity"
+			  android:label="@string/hd_wallets"
+			  android:screenOrientation="portrait">
+		</activity>
 	</application>
 
 </manifest>

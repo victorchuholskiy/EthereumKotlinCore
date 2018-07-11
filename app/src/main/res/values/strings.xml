@@ -17,10 +17,13 @@
 	<string name="mnemonic_phrase_title">Mnemonic phrase (BIP-39)</string>
 	<string name="generate_mnemonic">Generate mnemonic phrase</string>
 	<string name="generate_wallets">Generate wallets</string>
+	<string name="hd_wallets">HD wallets</string>
+	<string name="invalid_mnemonic_phrase">Invalid mnemonic phrase</string>
 
 	<string name="choose_path">Derivation path</string>
 	<string name="purpose">Purpose</string>
 	<string name="coin">Coin</string>
 	<string name="account">Account</string>
 	<string name="external_internal">External / Internal</string>
+	<string name="index">Index</string>
 </resources>
