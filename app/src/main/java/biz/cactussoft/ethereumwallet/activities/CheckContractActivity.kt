@@ -9,13 +9,17 @@ import biz.cactussoft.ethereumwallet.BuildConfig
 import biz.cactussoft.ethereumwallet.R
 import kotlinx.android.synthetic.main.activity_check_contract.*
 
+/**
+ * Created by viktor.chukholskiy
+ * 09/07/18.
+ */
 class CheckContractActivity : BaseHomeActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_check_contract)
 
-		et_address.setText(defContractAddress)
+		et_address.setText(DEF_COUNTRACT_ADDRESS)
 
 		btn_get_contract.setOnClickListener {
 			Thread(Runnable {
@@ -35,7 +39,7 @@ class CheckContractActivity : BaseHomeActivity() {
 	}
 
 	companion object {
-		const val defContractAddress = "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07" // OMG Token
+		const val DEF_COUNTRACT_ADDRESS = "0xd26114cd6EE289AccF82350c8d8487fedB8A0C07" // OMG Token
 
 		fun newIntent(context: Context): Intent {
 			return Intent(context, CheckContractActivity::class.java)

@@ -13,6 +13,10 @@ import kotlinx.android.synthetic.main.activity_mnemonic.*
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+ * Created by viktor.chukholskiy
+ * 10/07/18.
+ */
 class MnemonicActivity : BaseHomeActivity(), ChangePathDialog.ChangePathListener {
 
 	override fun onCreate(savedInstanceState: Bundle?) {

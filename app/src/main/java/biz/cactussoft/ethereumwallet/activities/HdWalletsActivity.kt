@@ -19,7 +19,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_hd_wallets.*
 
-
+/**
+ * Created by viktor.chukholskiy
+ * 11/07/18.
+ */
 class HdWalletsActivity : BaseHomeActivity() {
 
 	private var ethManager: EthManager? = null

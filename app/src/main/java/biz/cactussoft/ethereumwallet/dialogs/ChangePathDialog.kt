@@ -18,8 +18,6 @@ import kotlinx.android.synthetic.main.dialog_change_path.view.*
  * Created by viktor.chukholskiy
  * 10/07/18.
  */
-
-
 class ChangePathDialog : DialogFragment() {
 
 	interface ChangePathListener {
