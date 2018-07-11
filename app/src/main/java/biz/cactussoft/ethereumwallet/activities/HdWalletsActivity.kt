@@ -3,7 +3,6 @@ package biz.cactussoft.ethereumwallet.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import android.widget.Toast
@@ -18,25 +17,18 @@ import io.reactivex.ObservableEmitter
 import kotlinx.android.synthetic.main.activity_hd_wallets.*
 
 
-class HdWalletsActivity : AppCompatActivity() {
+class HdWalletsActivity : BaseHomeActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_hd_wallets)
-
-		val supportActionBar = supportActionBar
-		if (supportActionBar != null) {
-			supportActionBar.setDisplayHomeAsUpEnabled(true)
-			supportActionBar.setDisplayShowHomeEnabled(true)
-			supportActionBar.setHomeButtonEnabled(true)
-		}
 
 		val ethManager = EthManager(BuildConfig.INFURA_NODE_URL, this.filesDir.absolutePath + "/ethereum")
 		val adapter = HdWalletsAdapter(mutableListOf(), listener = {})
 
 		rv_hd_wallets.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
 		rv_hd_wallets.adapter = adapter
-		rv_hd_wallets.addItemDecoration(HdWalletsItemDecoration())
+		rv_hd_wallets.addItemDecoration(HdWalletsItemDecoration(this))
 
 		if (intent.extras != null) {
 			Observable.create<List<HDWallet>> { emitter: ObservableEmitter<List<HDWallet>> ->
