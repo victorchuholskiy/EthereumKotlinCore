@@ -5,6 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import biz.cactussoft.ethereumwallet.R
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * Created by viktor.chukholskiy
+ * 08/07/18.
+ */
 class MainActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
