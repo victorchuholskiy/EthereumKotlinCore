@@ -28,7 +28,7 @@ class CheckBalanceActivity : BaseHomeActivity() {
 				try {
 					val balance = ethManager.getBalance(et_address.text.toString()).inEther(BALANCE_DIGITS)
 					this@CheckBalanceActivity.runOnUiThread({
-						Toast.makeText(this, getString(R.string.balance) + ": " + balance.toString(), Toast.LENGTH_SHORT).show()
+						Toast.makeText(this, "${getString(R.string.balance)}: $balance", Toast.LENGTH_SHORT).show()
 					})
 				} catch (e : Exception) {
 					this@CheckBalanceActivity.runOnUiThread({

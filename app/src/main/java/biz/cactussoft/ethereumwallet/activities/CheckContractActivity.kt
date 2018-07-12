@@ -25,9 +25,8 @@ class CheckContractActivity : BaseHomeActivity() {
 			Thread(Runnable {
 				try {
 					val erc223Manager = ERC223ContractManager(BuildConfig.INFURA_NODE_URL, this.filesDir.absolutePath + "/ethereum", et_address.text.toString())
-					val data = erc223Manager.getNameInfo() + ": " + erc223Manager.getSymbolInfo()
 					this@CheckContractActivity.runOnUiThread({
-						Toast.makeText(this, data, Toast.LENGTH_SHORT).show()
+						Toast.makeText(this, "${erc223Manager.getNameInfo()}: ${erc223Manager.getSymbolInfo()}", Toast.LENGTH_SHORT).show()
 					})
 				} catch (e : Exception) {
 					this@CheckContractActivity.runOnUiThread({

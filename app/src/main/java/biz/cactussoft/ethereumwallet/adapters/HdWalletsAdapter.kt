@@ -32,7 +32,7 @@ class HdWalletsAdapter(private var items: MutableList<HDWallet>, private val lis
 
 	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 		fun bind(item: HDWallet, listener: (HDWallet) -> Unit) = with(itemView) {
-			val text = context.getText(R.string.index).toString() + " " + item.index + ": " +  item.address
+			val text = "${context.getText(R.string.index)} ${item.index}: ${item.address}"
 			itemView.tv_address.text = text
 			setOnClickListener { listener(item) }
 		}
